@@ -24,8 +24,12 @@ public class QueryDataService {
 	 */
 	public List<String> getListAllObjectsDownloaded() {
 		List<String> s3ObjectKeys = new ArrayList<String>();
-		for(Map<String, Object> s3ObjectKey : mappingTableDao.getAllS3ObjectKeysFromMappingTable()) {
-			s3ObjectKeys.add(s3ObjectKey.get("s3objectname").toString());
+		try {
+			for(Map<String, Object> s3ObjectKey : mappingTableDao.getAllS3ObjectKeysFromMappingTable()) {
+				s3ObjectKeys.add(s3ObjectKey.get("s3objectname").toString());
+			}
+		} catch(Exception e) {
+			//Exception occured while reading objects from DB.
 		}
 		return s3ObjectKeys;
 	}
