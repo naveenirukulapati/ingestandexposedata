@@ -25,7 +25,7 @@ public class QueryDataController {
 		return queryDataService.getListAllObjectsDownloaded();
 	}
 	
-	@RequestMapping(value="/download/s3object/{s3Objectkey}", method=RequestMethod.GET)
+	@RequestMapping(value="/download/s3object", method=RequestMethod.GET)
 	public ResponseEntity<Object> downloadS3ObjectFile(@RequestParam String s3Objectkey) {
 		Resource resource;
 		try {
@@ -36,7 +36,7 @@ public class QueryDataController {
 	                .body(resource);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-            .body("Exception Occured");
+            .body("Exception Occured wile processing the request.");
 		}
 	}
 }
